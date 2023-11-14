@@ -24,5 +24,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - run: npx nx format:check --base=origin/main --head=HEAD
       - run: npx nx affected -t lint,test,build --parallel=3

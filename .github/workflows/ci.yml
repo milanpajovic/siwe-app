@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
+      - run: pnpm install --frozen-lockfile
+      - uses: nrwl/nx-set-shas@v3
 
       - run: npx nx affected -t lint,test,build --parallel=3

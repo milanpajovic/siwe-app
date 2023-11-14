@@ -2,6 +2,9 @@
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
+import { initTracing } from '../tracing/tracer';
+const openTelemetrySDK = initTracing('api-service');
+openTelemetrySDK.start();
 
 import express from 'express';
 import * as path from 'path';

@@ -10,14 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
         with:
           fetch-depth: 0
+          version: 8.10.4
       # Cache node_modules
       - uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'pnpm'
-      - run: pnpm ci
+      - run: pnpm install
       - uses: nrwl/nx-set-shas@v3
       # This line is needed for nx affected to work when CI is running on a PR
       - run: git branch --track main origin/main

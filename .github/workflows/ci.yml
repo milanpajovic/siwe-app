@@ -4,26 +4,25 @@ on:
     branches:
       - main
   pull_request:
-
 jobs:
-  build:
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node-version: [20]
+  main:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # Cache node_modules
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Use Node.js 20
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - uses: nrwl/nx-set-shas@v3
+      # This line is needed for nx affected to work when CI is running on a PR
+      - run: git branch --track main origin/main
 
+      - run: npx nx format:check
       - run: npx nx affected -t lint,test,build --parallel=3

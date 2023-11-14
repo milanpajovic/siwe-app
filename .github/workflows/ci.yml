@@ -1,35 +1,26 @@
 name: CI
-
 on:
+  push:
+    branches:
+      # Change this if your primary branch is not main
+      - main
   pull_request:
-    branches: [ main ]
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [15]
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: '20' # or any version you prefer
-          cache: 'pnpm' # Enable caching for pnpm
-
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
+          version: 8
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: Install Dependencies
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install dependencies
         run: pnpm install
-
-      - name: Run Nx Affected Commands
-      - run: npx nx affected -t lint,test,build --base=origin/main --head=HEAD --parallel=3

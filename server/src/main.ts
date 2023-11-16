@@ -3,10 +3,19 @@ const openTelemetrySDK = initTracing('api-service');
 openTelemetrySDK.start();
 
 import express from 'express';
+import morgan from 'morgan';
 import * as path from 'path';
 import db from './models';
+import logger from './config/logger';
 
 const app = express();
+
+// Morgan setup
+app.use(
+  morgan('combined', {
+    stream: { write: (message) => logger.info(message.trim()) },
+  })
+);
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 

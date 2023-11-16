@@ -52,7 +52,7 @@ app.use(
 //
 const session = ironSession({
   cookieName: 'iron-session/examples/express',
-  password: 'dyTtTgMg6pkzzNxqGMXpPqmXV6W9WahF', //process.env.SECRET_COOKIE_PASSWORD,
+  password: 'dyTtTgMg6pkzzNxqGMXpPqmXV6W9Wahx', //process.env.SECRET_COOKIE_PASSWORD,
   cookieOptions: {
     secure: process.env.NODE_ENV === 'production',
   },

@@ -129,12 +129,12 @@ app.post('/api/sign_out', async (req, res) => {
 
 const startServer = async () => {
   try {
-    // await db
-    //   .authenticate({})
-    //   .then(() => console.log('Connection has been established successfully.'))
-    //   .catch((error) =>
-    //     console.log('Unable to connect to the database:', error)
-    //   );
+    await db
+      .authenticate({})
+      .then(() => console.log('Connection has been established successfully.'))
+      .catch((error) =>
+        console.log('Unable to connect to the database:', error)
+      );
     // Start the Express server
     const port = process.env.PORT || 3000;
     const server = app.listen(port, () => {

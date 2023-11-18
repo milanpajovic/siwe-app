@@ -9,9 +9,13 @@ const ProfileDetails = () => {
   return (
     <>
       <div className="flex items-center justify-center py-6 text-center">
-      <ShadowBox title={t('Profile details')}>
-        {isLoadingProfile ? <Loader /> : <ProfileDetailsForm data={profile} />}
-      </ShadowBox>
+        <ShadowBox title={t('Profile details')}>
+          {isLoadingProfile ? (
+            <Loader />
+          ) : (
+            <ProfileDetailsForm data={profile} />
+          )}
+        </ShadowBox>
       </div>
     </>
   );

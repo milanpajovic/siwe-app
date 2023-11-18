@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import qs from 'qs';
 
@@ -10,7 +11,6 @@ const axiosInstance = axios.create({
     },
   },
 });
-
 
 // If needed in the future
 export const addAccessTokenInterceptor = (token: string) => {

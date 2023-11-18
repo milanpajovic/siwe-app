@@ -38,12 +38,10 @@ const validationSchema = yup.object({
     .email('Invalid email address')
     .notRequired()
     .transform((val) => (val === '' ? undefined : val)),
-  contactPhone: yup
-    .string()
-    .matches(phoneRegEx, {
-      message: 'Invalid phone number',
-      excludeEmptyString: true,
-    }),
+  contactPhone: yup.string().matches(phoneRegEx, {
+    message: 'Invalid phone number',
+    excludeEmptyString: true,
+  }),
 });
 
 const resolver = yupResolver(validationSchema);

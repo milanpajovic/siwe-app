@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Button from '../../atom/Button';
 import Input from '../../atom/Input';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +7,6 @@ import Errors from '../../atom/Errors';
 import { useProfileMutation } from '../../../app/queries/useProfileMutation';
 import { ProfileDetailsType, resolver } from '../../../app/forms/profile';
 import { toast } from 'react-hot-toast';
-import { queryClient } from '../../../app/config/react-query';
 
 interface ProfileDetailFormProps {
   data: any;
@@ -19,7 +19,7 @@ const ProfileDetailsForm = ({ data }: ProfileDetailFormProps) => {
   const prepareDefaultValues = () => {
     const {
       name,
-      profile: { location, taxNumber, companyNumber, contactPhone, email },
+      profile: { location, contactPhone, email },
     } = data;
 
     return {
@@ -45,14 +45,12 @@ const ProfileDetailsForm = ({ data }: ProfileDetailFormProps) => {
   });
 
   const { field: nameField } = useController({ name: 'name', control });
-  const { field: locationField } = useController({ name: 'country', control });
   const { field: addressField } = useController({ name: 'address', control });
   const { field: postalCodeField } = useController({
     name: 'postalCode',
     control,
   });
   const { field: cityField } = useController({ name: 'city', control });
-  const { field: regionField } = useController({ name: 'region', control });
   const { field: emailField } = useController({ name: 'email', control });
   const { field: contactPhoneField } = useController({
     name: 'contactPhone',
@@ -76,8 +74,6 @@ const ProfileDetailsForm = ({ data }: ProfileDetailFormProps) => {
     })
       .then(() => {
         toast.success(t('Updated!'));
-        // @ts-ignore
-        queryClient.invalidateQueries(['profile']);
       })
       .catch((error) => {
         toast.error(error.message);

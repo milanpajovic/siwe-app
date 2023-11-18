@@ -1,6 +1,6 @@
-import {SiweMessage} from "siwe";
+import { SiweMessage } from 'siwe';
 import { createConfig } from 'wagmi';
-import {getDefaultConfig, SIWEConfig} from "connectkit";
+import { getDefaultConfig, SIWEConfig } from 'connectkit';
 
 const siweConfig = createConfig(
   getDefaultConfig({
@@ -11,15 +11,15 @@ const siweConfig = createConfig(
     // Optional
     appDescription: 'Demo Application using SIWE',
     appUrl: 'https://family.co', // app's url
-    appIcon: 'https://cdn.sanity.io/images/r2mka0oi/production/bf37b9c7fb36c7d3c96d3d05b45c76d89072b777-1800x1800.png?w=3840&q=60&auto=format&fit=max', // your app's icon, no bigger than 1024x1024px (max. 1MB) // todo
+    appIcon:
+      'https://cdn.sanity.io/images/r2mka0oi/production/bf37b9c7fb36c7d3c96d3d05b45c76d89072b777-1800x1800.png?w=3840&q=60&auto=format&fit=max', // your app's icon, no bigger than 1024x1024px (max. 1MB) // todo
   })
 );
 
-const BASE_URL = import.meta.env.VITE_API_URL
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const siweProviderConfig: SIWEConfig = {
-  getNonce: async () =>
-    fetch(`${BASE_URL}/nonce`).then((res) => res.text()),
+  getNonce: async () => fetch(`${BASE_URL}/nonce`).then((res) => res.text()),
   createMessage: ({ nonce, address, chainId }) =>
     new SiweMessage({
       version: '1',
@@ -43,8 +43,8 @@ const siweProviderConfig: SIWEConfig = {
     }).then((res) => res.ok),
 
   getSession: async () =>
-    fetch(`${BASE_URL}/session`, { credentials: 'include' }).then(
-      (res) => (res.ok ? res.json() : null)
+    fetch(`${BASE_URL}/session`, { credentials: 'include' }).then((res) =>
+      res.ok ? res.json() : null
     ),
   signOut: async () =>
     fetch(`${BASE_URL}/sign_out`, {
@@ -52,5 +52,4 @@ const siweProviderConfig: SIWEConfig = {
     }).then((res) => res.ok),
 };
 
-
-export { siweConfig, siweProviderConfig};
+export { siweConfig, siweProviderConfig };

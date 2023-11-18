@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { forwardRef, ReactNode, Ref } from 'react';
 import classNames from 'classnames';
 

@@ -1,4 +1,3 @@
-
 import { Request, Response, NextFunction } from 'express';
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   if (req.session.siwe) {
@@ -6,6 +5,6 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     next();
   } else {
     // No valid session, user not authenticated
-    res.status(401).json({ message: "Unauthorized" });
+    res.status(401).json({ message: 'Unauthorized' });
   }
 }

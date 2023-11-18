@@ -1,33 +1,71 @@
 import { Request, Response } from 'express';
-import Profile from '../models/Profile.model';
+import profileService from '../services/profile.service';
+interface Location {
+  address: string;
+  postalCode: string;
+  city: string;
+}
+
+interface ProfileInterface {
+  location: Location;
+  email: string;
+  contactPhone: string;
+}
+
+export interface UpdateProfileRequest {
+  name: string;
+  profile: ProfileInterface;
+}
 
 const getProfile = async (req: Request, res: Response) => {
-  const profile = {
-    name: 'Example Username',
-    profile: {
-      location: '1234 Example Street, Example City, EX 12345',
-      contactPhone: '+1-234-567-8901',
-      email: 'contact@example.com',
-    },
-  };
+  const walletAddress = req.session.siwe.address;
+  const profile = await profileService.findProfileByWalletAddress(
+    walletAddress
+  );
 
-  let result = await Profile.findAndCountAll({
+  if (!profile) {
+    return res.send({
+      name: '',
+      profile: {
+        location: {
+          address: '',
+          postalCode: '',
+          city: '',
+        },
+        contactPhone: '',
+        email: '',
+      },
+    });
+  }
+
+  return res.send({
+    name: profile.username,
+    profile: {
+      location: {
+        address: profile.address,
+        postalCode: profile.postal_code,
+        city: profile.city,
+      },
+      contactPhone: profile.phone,
+      email: profile.email,
+    },
   });
+};
+
+const updateProfile = async (req: Request, res: Response) => {
+  const walletAddress = req.session.siwe.address;
+  const data = req.body as UpdateProfileRequest;
+
+  let profile = await profileService.findProfileByWalletAddress(walletAddress);
+
+  if (!profile) {
+    profile = await profileService.createProfile(data, walletAddress);
+    return res.send(profile);
+  }
+
+  profile = await profileService.updateProfile(profile, data);
 
   return res.send(profile);
 };
 
-const updateProfile = (req: Request, res: Response) => {
-  console.log(req.body);
-  const profile = {
-    name: 'Example Username',
-    profile: {
-      location: '1234 Example Street, Example City, EX 12345',
-      contactPhone: '+1-234-567-8901',
-      email: 'contact@example.com',
-    },
-  };
-  return res.send(profile);
-};
-
-export { getProfile, updateProfile};
+export { getProfile, updateProfile };

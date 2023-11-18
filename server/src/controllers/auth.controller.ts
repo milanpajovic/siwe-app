@@ -1,4 +1,3 @@
-import { providers } from 'ethers';
 import { Request, Response } from 'express';
 import { generateNonce, SiweMessage, SiweResponse } from 'siwe';
 import { getRpcProvider } from '../config/rpc-provider.config';
@@ -28,7 +27,7 @@ const verifySiwe = async (req: Request, res: Response) => {
     { provider: getRpcProvider(siweMessage.chainId) }
   );
 
-  if (!siweResponse.success){
+  if (!siweResponse.success) {
     return res.json({ ok: false });
   }
 

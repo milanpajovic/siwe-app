@@ -7,13 +7,13 @@ import {
   PrimaryKey,
   Table,
   Unique,
-} from "sequelize-typescript";
+} from 'sequelize-typescript';
 
 @Table({
   freezeTableName: true,
-  modelName: "profiles",
+  modelName: 'profiles',
   timestamps: true,
-  underscored: true
+  underscored: true,
 })
 export default class Profile extends Model<Profile> {
   @Unique

@@ -1,7 +1,7 @@
 import { IronSessionOptions } from 'iron-session';
-import { generateNonce, SiweMessage } from 'siwe';
+import { SiweMessage } from 'siwe';
 import { ironSession } from 'iron-session/express';
-import { CONFIG, ApplicationEnv } from '../config/index'
+import { CONFIG, ApplicationEnv } from '../config';
 
 const sessionOptions: IronSessionOptions = {
   cookieName: CONFIG.COOKIE_NAME,
@@ -18,5 +18,3 @@ declare module 'iron-session' {
   }
 }
 export const session = ironSession(sessionOptions);
-
-

@@ -3,22 +3,18 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 export type ProfileDetailsType = {
   name: string;
-  country: string;
   address: string;
   postalCode: string;
   city: string;
-  region: string;
   email: string;
   contactPhone: string;
 };
 
 const defaultValues = {
   name: '',
-  country: '',
   address: '',
   postalCode: '',
   city: '',
-  region: '',
   email: '',
   contactPhone: '',
 };
@@ -28,20 +24,21 @@ const phoneRegEx =
 
 const validationSchema = yup.object({
   name: yup.string().required('Required'),
-  country: yup.string(),
-  address: yup.string(),
-  postalCode: yup.string(),
-  city: yup.string(),
-  region: yup.string(),
+  address: yup.string().required('Required'),
+  postalCode: yup.string().required('Required'),
+  city: yup.string().required('Required'),
   email: yup
     .string()
     .email('Invalid email address')
-    .notRequired()
+    .required('Required')
     .transform((val) => (val === '' ? undefined : val)),
-  contactPhone: yup.string().matches(phoneRegEx, {
-    message: 'Invalid phone number',
-    excludeEmptyString: true,
-  }),
+  contactPhone: yup
+    .string()
+    .matches(phoneRegEx, {
+      message: 'Invalid phone number',
+      excludeEmptyString: true,
+    })
+    .required('Required'),
 });
 
 const resolver = yupResolver(validationSchema);

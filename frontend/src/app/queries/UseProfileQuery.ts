@@ -9,5 +9,5 @@ const fetch = async (): Promise<any> => {
 };
 
 export const useProfileQuery = () => {
-  return useQuery({ queryKey: ['organization'], queryFn: () => fetch() }); // todo change It
+  return useQuery({ queryKey: ['profile'], queryFn: () => fetch() });
 };

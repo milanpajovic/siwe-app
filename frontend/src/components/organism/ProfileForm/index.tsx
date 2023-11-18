@@ -24,11 +24,9 @@ const ProfileDetailsForm = ({ data }: ProfileDetailFormProps) => {
 
     return {
       name: name,
-      country: location?.country ?? '',
       address: location?.address ?? '',
       postalCode: location?.postalCode ?? '',
       city: location?.city ?? '',
-      region: location?.state ?? '',
       email: email ?? '',
       contactPhone: contactPhone ?? '',
     };
@@ -62,11 +60,9 @@ const ProfileDetailsForm = ({ data }: ProfileDetailFormProps) => {
       name: data.name,
       profile: {
         location: {
-          country: data.country,
           address: data.address,
           postalCode: data.postalCode,
           city: data.city,
-          state: data.region,
         },
         email: data.email,
         contactPhone: data.contactPhone,

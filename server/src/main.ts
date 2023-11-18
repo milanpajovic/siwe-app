@@ -17,7 +17,6 @@ import { requireAuth } from './middleware/auth.middleware';
 
 const app = express();
 
-
 // Helmet setup
 app.use(
   helmet({
@@ -59,7 +58,7 @@ const startServer = async () => {
 
     // NOTE! This should not be used in production, it is here just because of simplicity
     // In production we would write migrations
-    await db.sync()
+    await db.sync();
     // Start the Express server
     const port = CONFIG.NODE_PORT || 3001;
     const server = app.listen(port, () => {
@@ -74,5 +73,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-

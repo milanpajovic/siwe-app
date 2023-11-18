@@ -1,5 +1,5 @@
-import { providers } from "ethers";
-import { CONFIG } from "./index"
+import { providers } from 'ethers';
+import { CONFIG } from './index';
 const getInfuraUrl = (chainId: number) => {
   switch (chainId) {
     case 1:
@@ -15,16 +15,14 @@ const getInfuraUrl = (chainId: number) => {
   }
 };
 
-const getRpcProvider =  (chainId: number) => {
+const getRpcProvider = (chainId: number) => {
   return new providers.JsonRpcProvider(
     {
       allowGzip: true,
-      url: `${getInfuraUrl(
-        chainId
-      )}/${CONFIG.INFURA_ID}`,
+      url: `${getInfuraUrl(chainId)}/${CONFIG.INFURA_ID}`,
     },
     chainId
   );
-}
+};
 
-export { getRpcProvider }
+export { getRpcProvider };

@@ -16,7 +16,7 @@ const siweConfig = createConfig(
   })
 );
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL + '/auth';
 
 const siweProviderConfig: SIWEConfig = {
   getNonce: async () => fetch(`${BASE_URL}/nonce`).then((res) => res.text()),

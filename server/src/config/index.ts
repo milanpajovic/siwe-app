@@ -20,6 +20,9 @@ const {
   NODE_ENV,
   SESSION_SECRET,
   UI_ORIGIN,
+  INFURA_ID,
+  SECRET_COOKIE_PASSWORD,
+  COOKIE_NAME,
 } = process.env;
 
 const ENV: ApplicationEnv =
@@ -37,4 +40,7 @@ export const CONFIG = {
   DB_USER,
   SESSION_SECRET,
   UI_ORIGIN,
+  INFURA_ID,
+  SECRET_COOKIE_PASSWORD,
+  COOKIE_NAME,
 };

@@ -7,12 +7,9 @@ import cors from 'cors';
 import morgan from 'morgan';
 import 'iron-session';
 import helmet from 'helmet';
-import * as path from 'path';
-import { providers } from 'ethers';
-// import db from './models';
+import db from './models';
 import logger from './config/logger';
-import { CONFIG } from './config/index';
-import { generateNonce, SiweMessage } from 'siwe';
+import { CONFIG } from './config';
 import profileRoute from './routes/profile.router';
 import authRoute from './routes/auth.router';
 import { session } from './middleware/session';
@@ -53,12 +50,16 @@ app.use('/api/profile', requireAuth, profileRoute);
 
 const startServer = async () => {
   try {
-    // await db
-    //   .authenticate({})
-    //   .then(() => console.log('Connection has been established successfully.'))
-    //   .catch((error) =>
-    //     console.log('Unable to connect to the database:', error)
-    //   );
+    await db
+      .authenticate({})
+      .then(() => console.log('Connection has been established successfully.'))
+      .catch((error) =>
+        console.log('Unable to connect to the database:', error)
+      );
+
+    // NOTE! This should not be used in production, it is here just because of simplicity
+    // In production we would write migrations
+    await db.sync()
     // Start the Express server
     const port = CONFIG.NODE_PORT || 3001;
     const server = app.listen(port, () => {

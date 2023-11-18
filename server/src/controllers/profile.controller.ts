@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
+import Profile from '../models/Profile.model';
 
-const getProfile = (req: Request, res: Response) => {
+const getProfile = async (req: Request, res: Response) => {
   const profile = {
     name: 'Example Username',
     profile: {
@@ -9,6 +10,10 @@ const getProfile = (req: Request, res: Response) => {
       email: 'contact@example.com',
     },
   };
+
+  let result = await Profile.findAndCountAll({
+  });
+
   return res.send(profile);
 };
 

@@ -107,6 +107,8 @@
     "sequelize": "^6.35.0",
     "sequelize-typescript": "^2.1.5",
     "siwe": "^2.1.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "tslib": "^2.3.0",
     "viem": "^1.19.3",
     "wagmi": "^1.4.7",

@@ -7,6 +7,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import 'iron-session';
 import helmet from 'helmet';
+import swaggerUi from 'swagger-ui-express';
 import db from './models';
 import logger from './config/logger';
 import { CONFIG } from './config';
@@ -14,6 +15,7 @@ import profileRoute from './routes/profile.router';
 import authRoute from './routes/auth.router';
 import { session } from './middleware/session';
 import { requireAuth } from './middleware/auth.middleware';
+import swaggerSpec from './config/swagger.config';
 
 const app = express();
 
@@ -40,6 +42,9 @@ app.use(
     stream: { write: (message) => logger.info(message.trim()) },
   })
 );
+
+// Swagger page
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(session);
 

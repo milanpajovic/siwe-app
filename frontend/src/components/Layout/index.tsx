@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { ConnectKitButton } from 'connectkit';
-import './styles.css';
+import './styles.scss';
 
 type LayoutProps = {
   children: ReactNode;

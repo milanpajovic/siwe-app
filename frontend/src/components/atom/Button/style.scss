@@ -1,0 +1,50 @@
+button {
+  @apply flex h-14 items-center justify-center transition-colors duration-200 disabled:cursor-not-allowed;
+
+  &.btn-default {
+    @apply rounded border-2 border-transparent bg-money px-4 font-medium text-white hover:bg-money-dark
+    focus:outline-none focus-visible:outline-offset-0 active:border-transparent active:bg-money-darker
+    disabled:cursor-not-allowed disabled:bg-money-light disabled:text-money-lighter;
+  }
+
+  &.btn-secondary {
+    @apply rounded border border-bone-dark bg-white px-4 font-medium text-fingerprint
+    hover:border hover:border-bone-darker hover:bg-bone-lighter focus:outline-none focus-visible:outline-offset-0
+    active:border-money-dark active:bg-bone-light disabled:cursor-not-allowed disabled:border-bone disabled:bg-white
+    disabled:text-money-light;
+  }
+
+  &.btn-tertiary {
+    @apply rounded bg-transparent px-4 font-medium text-money hover:bg-money-lighter focus:outline-none focus-visible:outline-2
+    focus-visible:outline-offset-0 focus-visible:outline-money-lighter active:bg-money-light
+    active:text-money disabled:cursor-not-allowed disabled:bg-money-lighter disabled:text-money-light;
+  }
+
+  &.btn-none {
+    @apply rounded focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-0
+    focus-visible:outline-money-lighter active:bg-money-light active:text-fingerprint disabled:cursor-not-allowed
+    disabled:bg-money-lighter disabled:text-money-light;
+  }
+
+  &.btn-round {
+    @apply rounded-full border border-money-light bg-white px-5 font-bold text-fingerprint
+    hover:border hover:border-bone-dark hover:bg-money-lighter focus:outline-none focus-visible:outline-2
+    focus-visible:outline-offset-0 focus-visible:outline-money-lighter active:border-fingerprint-dark active:bg-money-light
+    disabled:cursor-not-allowed disabled:border-bone disabled:bg-white disabled:text-money-lighter;
+  }
+
+  &.btn-cancel {
+    @apply rounded border border-state-red bg-state-red px-4 font-medium text-white
+    hover:border hover:border-state-red hover:bg-bone-lighter hover:text-state-red focus:outline-none focus-visible:outline-offset-0
+    active:border-state-red active:bg-bone-light disabled:cursor-not-allowed disabled:border-bone disabled:bg-state-red/50
+    disabled:text-white/50;
+  }
+
+  &.btn-icon {
+    @apply h-8 w-8 rounded text-5xl text-fingerprint hover:bg-bone-dark;
+  }
+
+  &.btn-sm {
+    @apply h-8 p-4;
+  }
+}

@@ -1,0 +1,54 @@
+.input-field {
+  @apply relative;
+
+  label {
+    @apply pointer-events-none absolute left-4 top-1/2 my-auto -translate-y-1/2 transform font-normal text-bone-darker transition-all;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='number'] {
+    @apply block h-14 w-full rounded-t border-b border-l-0 border-r-0 border-t-0 border-bone-darker bg-bone-lighter
+    px-4 pt-7 font-medium text-money-darker hover:bg-bone-light focus:border-b-fingerprint focus:bg-money-lighter
+    hover:disabled:bg-bone-lighter;
+  }
+
+  &.hide-label {
+    input[type='text'],
+    input[type='email'],
+    input[type='number'] {
+      @apply pt-2.5;
+    }
+  }
+
+  button.clear {
+    @apply absolute top-1/2 right-2.5 -translate-y-1/2;
+
+    & ~ input {
+      @apply pr-7.5;
+    }
+  }
+}
+
+input[type='text']:focus ~ label,
+input[type='text']:not(:placeholder-shown) ~ label,
+input[type='email']:focus ~ label,
+input[type='email']:not(:placeholder-shown) ~ label,
+input[type='number']:focus ~ label,
+input[type='number']:not(:placeholder-shown) ~ label {
+  top: 15.5px;
+  @apply text-xs font-[600] text-fingerprint-dark;
+}
+
+input[type='text']::placeholder,
+input[type='email']::placeholder,
+input[type='number']::placeholder {
+  opacity: 0 !important;
+}
+
+input[type='text']:focus::placeholder,
+input[type='email']:focus::placeholder,
+input[type='number']:focus::placeholder {
+  opacity: 1 !important;
+  transition: opacity 0.5s;
+}

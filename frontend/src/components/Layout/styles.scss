@@ -1,0 +1,12 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end; /* Aligns items to the end of the container */
+  padding: 10px; /* Adjust as needed */
+  /* Add other styling for your header here */
+}

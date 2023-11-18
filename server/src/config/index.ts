@@ -1,5 +1,4 @@
 import * as dotenv from 'dotenv';
-
 dotenv.config();
 
 export enum ApplicationEnv {
@@ -20,6 +19,7 @@ const {
   DB_USER,
   NODE_ENV,
   SESSION_SECRET,
+  UI_ORIGIN,
 } = process.env;
 
 const ENV: ApplicationEnv =
@@ -36,4 +36,5 @@ export const CONFIG = {
   DB_PORT,
   DB_USER,
   SESSION_SECRET,
+  UI_ORIGIN,
 };

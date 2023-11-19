@@ -51,6 +51,9 @@ app.use(session);
 // Use your routes here
 app.use('/api/auth', authRoute);
 app.use('/api/profile', requireAuth, profileRoute);
+app.get('/', (req, res) => {
+  res.send({ ok: true });
+});
 
 const startServer = async () => {
   try {

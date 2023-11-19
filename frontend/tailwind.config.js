@@ -95,11 +95,11 @@ module.exports = {
       },
       colors: {
         money: {
-          lighter: '#E9EAF1',
-          light: '#9A9EC5',
-          DEFAULT: '#3330A8',
-          dark: '#2B2A70',
-          darker: '#041C3A',
+          lighter: '#648778',
+          light: '#375e4e',
+          DEFAULT: '#315445',
+          dark: '#2b493c',
+          darker: '#253f34',
         },
         fingerprint: {
           lighter: '#57616A',

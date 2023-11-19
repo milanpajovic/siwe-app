@@ -8,6 +8,17 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=production
+      - NODE_PORT=3000
+      - DB_DIALECT=postgres
+      - DB_HOST=localhost
+      - DB_NAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - UI_ORIGIN=http://localhost:4200/
+      - INFURA_ID=8fcacee838e04f31b6ec145eb98879c8
+      - SECRET_COOKIE_PASSWORD=dyTtTgMg6pkzzNxqGMXpPqmXV6W9WahF
+      - COOKIE_NAME='iron-session/siwe-app-gnosis'
     depends_on:
       - db
       - cache

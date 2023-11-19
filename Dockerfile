@@ -1,5 +1,5 @@
 # Stage 1: Build the TypeScript application
-FROM node:18.17.0 as builder
+FROM --platform=linux/amd64 node:18.14.2-alpine3.17 as builder
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -20,7 +20,7 @@ COPY . .
 RUN npx nx build server
 
 # Stage 2: Setup the production environment and run the app
-FROM node:18.17.0
+FROM --platform=linux/amd64 node:18.14.2-alpine3.17
 
 WORKDIR /usr/src/app
 

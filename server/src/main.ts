@@ -52,7 +52,7 @@ app.use(session);
 app.use('/api/auth', authRoute);
 app.use('/api/profile', requireAuth, profileRoute);
 app.get('/', (req, res) => {
-  res.send({ ok: true, version: '1.0.0' });
+  res.send({ ok: true, version: '1.0.1' });
 });
 
 const startServer = async () => {

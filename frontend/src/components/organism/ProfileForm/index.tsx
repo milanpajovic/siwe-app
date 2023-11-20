@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Button from '../../atom/Button';
 import Input from '../../atom/Input';
 import { useTranslation } from 'react-i18next';
@@ -7,9 +6,10 @@ import Errors from '../../atom/Errors';
 import { useProfileMutation } from '../../../app/queries/useProfileMutation';
 import { ProfileDetailsType, resolver } from '../../../app/forms/profile';
 import { toast } from 'react-hot-toast';
+import { ProfileObject } from '../../../app/queries/UseProfileQuery';
 
 interface ProfileDetailFormProps {
-  data: any;
+  data: ProfileObject;
 }
 
 const ProfileDetailsForm = ({ data }: ProfileDetailFormProps) => {

@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from '@tanstack/react-query';
 import { PROFILE_UPDATE_API } from '../consts/api.consts';
 import axiosInstance from '../config/axios';
+import { ProfileObject } from './UseProfileQuery';
 
-const fetch = async (data: any): Promise<any> => {
+const fetch = async (data: ProfileObject): Promise<ProfileObject> => {
   return (await axiosInstance({ ...PROFILE_UPDATE_API, data })).data;
 };
 

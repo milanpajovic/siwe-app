@@ -1,8 +1,8 @@
 import Profile from '../models/Profile.model';
-import { UpdateProfileRequest } from '../controllers/profile.controller';
+import { ProfileObject } from '../controllers/profile.controller';
 
 const createProfile = async (
-  profile: UpdateProfileRequest,
+  profile: ProfileObject,
   walletAddress: string
 ): Promise<Profile> => {
   return Profile.create({
@@ -28,7 +28,7 @@ const findProfileByWalletAddress = async (
 
 const updateProfile = async (
   profile: Profile,
-  profileUpdate: UpdateProfileRequest
+  profileUpdate: ProfileObject
 ): Promise<Profile> => {
   profile.username = profileUpdate.name;
   profile.email = profileUpdate.profile.email;

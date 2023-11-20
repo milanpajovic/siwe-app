@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { generateNonce, SiweMessage, SiweResponse } from 'siwe';
 import { getRpcProvider } from '../config/rpc-provider.config';
+import { logger } from 'ethers';
 
 const getNonce = async (req: Request, res: Response) => {
   req.session.nonce = generateNonce();
@@ -20,12 +21,18 @@ const getSession = async (req: Request, res: Response) => {
 };
 const verifySiwe = async (req: Request, res: Response) => {
   const { message, signature } = req.body;
-  const siweMessage = new SiweMessage(message);
 
-  const siweResponse: SiweResponse = await siweMessage.verify(
-    { signature },
-    { provider: getRpcProvider(siweMessage.chainId) }
-  );
+  let siweResponse: SiweResponse;
+  try {
+    const siweMessage = new SiweMessage(message);
+    siweResponse = await siweMessage.verify(
+      { signature },
+      { provider: getRpcProvider(siweMessage.chainId) }
+    );
+  } catch (error) {
+    logger.info('error', error);
+    return res.json({ ok: false });
+  }
 
   if (!siweResponse.success) {
     return res.json({ ok: false });

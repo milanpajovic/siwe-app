@@ -8,6 +8,7 @@ const sessionOptions: IronSessionOptions = {
   password: CONFIG.SECRET_COOKIE_PASSWORD,
   cookieOptions: {
     secure: true,
+    sameSite: 'none',
   },
 };
 

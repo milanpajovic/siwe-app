@@ -1,28 +1,30 @@
 version: '3.8'
 services:
-  api:
-    build:
-      context: .
-      dockerfile: ./server/Dockerfile
-    ports:
-      - '3000:3000'
-    environment:
-      - NODE_ENV=development
-      - NODE_PORT=3000
-      - DB_DIALECT=postgres
-      - DB_HOST=localhost
-      - DB_NAME=postgres
-      - DB_PASSWORD=postgres
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - UI_ORIGIN=http://localhost:4200/
-      - INFURA_ID=8fcacee838e04f31b6ec145eb98879c8
-      - SECRET_COOKIE_PASSWORD=dyTtTgMg6pkzzNxqGMXpPqmXV6W9WahF
-      - COOKIE_NAME='iron-session/siwe-app-gnosis'
-    depends_on:
-      - db
-      - cache
-      - jaeger
+  #  api:
+  #    build:
+  #      context: .
+  #      dockerfile: ./Dockerfile
+  #    ports:
+  #      - '3000:3000'
+  #    env_file:
+  #      - server/.env
+  #    environment:
+  #      - NODE_ENV:${NODE_ENV}
+  #      - NODE_PORT:${NODE_PORT}
+  #      - DB_DIALECT:${DB_DIALECT}
+  #      - DB_HOST=${DB_HOST}
+  #      - DB_NAME=${DB_NAME}
+  #      - DB_PASSWORD=${DB_PASSWORD}
+  #      - DB_PORT=${DB_PORT}
+  #      - DB_USER=${DB_USER}
+  #      - UI_ORIGIN=${UI_ORIGIN}
+  #      - INFURA_ID=${INFURA_ID}
+  #      - SECRET_COOKIE_PASSWORD=${SECRET_COOKIE_PASSWORD}
+  #      - COOKIE_NAME=${COOKIE_NAME}
+  #    depends_on:
+  #      - db
+  #      - cache
+  #      - jaeger
   db:
     image: postgres:latest
     environment:

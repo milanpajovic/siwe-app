@@ -13,6 +13,7 @@ import logger from './config/logger';
 import { CONFIG } from './config';
 import profileRoute from './routes/profile.router';
 import authRoute from './routes/auth.router';
+import healthRoute from './routes/health.router';
 import { session } from './middleware/session';
 import { requireAuth } from './middleware/auth.middleware';
 import swaggerSpec from './config/swagger.config';
@@ -29,6 +30,7 @@ app.use(
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// Cors setup
 app.use(
   cors({
     origin: CONFIG.UI_ORIGIN,
@@ -46,14 +48,13 @@ app.use(
 // Swagger page
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// Session
 app.use(session);
 
 // Use your routes here
+app.use('/', healthRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/profile', requireAuth, profileRoute);
-app.get('/', (req, res) => {
-  res.send({ ok: true, version: '1.0.1' });
-});
 
 const startServer = async () => {
   try {
@@ -75,7 +76,6 @@ const startServer = async () => {
     server.on('error', console.error);
   } catch (error) {
     console.error(error);
-    // todo
     process.exit(1);
   }
 };

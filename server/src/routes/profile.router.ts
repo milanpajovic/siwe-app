@@ -1,6 +1,10 @@
 import { Router } from 'express';
 import * as ProfileController from '../controllers/profile.controller';
 const router = Router();
+
+router.get('/', ProfileController.getProfile);
+router.put('/', ProfileController.updateProfile);
+
 /**
  * @swagger
  * /api/profile:
@@ -51,7 +55,6 @@ const router = Router();
  *       401:
  *         description: Unauthorized if the session ID is missing or invalid.
  */
-router.get('/', ProfileController.getProfile);
 /**
  * @swagger
  * /api/profile:
@@ -106,6 +109,5 @@ router.get('/', ProfileController.getProfile);
  *       401:
  *         description: Unauthorized if the session ID is missing or invalid.
  */
-router.put('/', ProfileController.updateProfile);
 
 export default router;

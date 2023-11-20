@@ -46,20 +46,24 @@ This project uses the Pnpm package manager for several reasons:
 These services work together to create a development environment for our web application. The `api` service hosts our application's backend, the `db` service provides the database, the `cache` service handles caching, and the `jaeger` service facilitates tracing and monitoring.
 
 ### api
+
 - The API service hosts web application's backend.
 - It can be used for development purpose to match environment on server
 - Container of this server is built and published to AWS ECR for production deployment
 
 ### db
+
 - The DB service runs a PostgreSQL database container.
 - It is used for development, managed RDS is used in production
 
 ### cache
+
 - The Cache service runs a Redis caching server.
 - It should be used as a layer between server and database
 - Redis service should be used for custom rate limiter service on application level
 
 ### jaeger
+
 - The Jaeger service runs the Jaeger tracing system's all-in-one container.
 - Enables OpenTelemetry Protocol (OTLP) and specifies log levels.
 - Used for both development and for production
@@ -76,7 +80,7 @@ To get started with the SIWE web application, follow these steps:
 6. Install dependencies using Pnpm: `pnpm install`
 7. If you want your local server outside docker comment api service in docker-compose file
 8. Run the following command to start all defined services (server, database, cache, and Jaeger) simultaneously: `docker-compose up` (docker build will be automatically executed)
-9. Start the application using Nx commands: `nx serve server` (for server) and  `nx serve frontend` (for frontend).
+9. Start the application using Nx commands: `nx serve server` (for server) and `nx serve frontend` (for frontend).
 10. Access the application in your browser at the provided URL.
 
 ## NX Commands
@@ -130,6 +134,7 @@ To access Jaeger's user interface and start monitoring your application, follow 
 ### Authentication Routes
 
 #### Get a Random Nonce
+
 - **Summary:** Retrieves a random nonce for authentication purposes.
 - **Request Type:** GET
 - **Endpoint:** `/api/auth/nonce`
@@ -137,6 +142,7 @@ To access Jaeger's user interface and start monitoring your application, follow 
 - **Usage:** Useful for initiating authentication processes.
 
 #### Get Session Information
+
 - **Summary:** Retrieves session information if the user is authenticated. Returns a simple object if not authenticated.
 - **Request Type:** GET
 - **Endpoint:** `/api/auth/session`
@@ -145,6 +151,7 @@ To access Jaeger's user interface and start monitoring your application, follow 
 - **Usage:** Check user session status and retrieve session data when authenticated.
 
 #### Verify a Signed Message
+
 - **Summary:** Verifies a message using the provided signature. Returns a success status if verification is successful.
 - **Request Type:** POST
 - **Endpoint:** `/api/auth/verify`
@@ -153,6 +160,7 @@ To access Jaeger's user interface and start monitoring your application, follow 
 - **Usage:** Verify the authenticity of a signed message.
 
 #### Sign Out the User
+
 - **Summary:** Signs out the user by destroying the session.
 - **Request Type:** GET
 - **Endpoint:** `/api/auth/sign_out`
@@ -163,6 +171,7 @@ To access Jaeger's user interface and start monitoring your application, follow 
 ### User Profile Routes
 
 #### Retrieve User Profile Information
+
 - **Summary:** Returns user profile data, including name, location, contact phone, and email.
 - **Request Type:** GET
 - **Endpoint:** `/api/profile`
@@ -171,6 +180,7 @@ To access Jaeger's user interface and start monitoring your application, follow 
 - **Usage:** Retrieve and display user profile information.
 
 #### Update User Profile
+
 - **Summary:** Updates the user's profile information.
 - **Request Type:** PUT
 - **Endpoint:** `/api/profile`
@@ -184,6 +194,7 @@ These routes provide various authentication and user profile functionalities for
 ## GitHub Actions
 
 ### Pull Request Validation (CI)
+
 - **Trigger:** This Action is triggered automatically when a pull request is opened or updated.
 
 - **Validation Steps:**
@@ -191,6 +202,7 @@ These routes provide various authentication and user profile functionalities for
   - Runs linting, testing, and building tasks in parallel using `npx nx affected -t lint,test,build --parallel=3`.
 
 ### Amazon ECS Deployment
+
 - **Trigger:** This Action is triggered when code is pushed to the `main` branch
 - **Deployment Steps:**
 - Checks out the code using `actions/checkout@v4`.
@@ -202,7 +214,6 @@ These routes provide various authentication and user profile functionalities for
 
 ## Deployment
 
-
 - Frontend: The frontend of the application is deployed and accessible at [https://siwe-app.vercel.app/](https://siwe-app.vercel.app/).
 
 - Backend: The backend of the application is deployed and accessible at [https://www.milanpajovic.com/](https://www.milanpajovic.com/).
@@ -210,6 +221,7 @@ These routes provide various authentication and user profile functionalities for
 ### Frontend Deployment with Vercel
 
 The frontend of the SIWE web application is deployed using Vercel, a platform for hosting frontend applications. Vercel simplifies the deployment process and provides a reliable hosting environment. Here's how the frontend deployment works:
+
 - **Continuous Deployment:** The frontend code is automatically deployed to Vercel whenever changes are pushed to the main branch of the repository.
 
 - **Vercel Configuration:** The Vercel deployment configuration is set up to build and host the React-based frontend of the application. Vercel provides a simple and seamless deployment experience for frontend projects.
@@ -217,7 +229,6 @@ The frontend of the SIWE web application is deployed using Vercel, a platform fo
 ### Backend Deployment with GitHub Actions
 
 The backend of the SIWE web application is deployed using GitHub Actions, specifically the "Deploy to Amazon ECS" GitHub Action described earlier.
-
 
 ## License
 

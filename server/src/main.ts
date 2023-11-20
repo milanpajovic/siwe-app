@@ -56,7 +56,6 @@ app.use('/', healthRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/profile', requireAuth, profileRoute);
 
-
 const startServer = async () => {
   try {
     await db

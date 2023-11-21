@@ -12,7 +12,7 @@ interface ProfileInterface {
   contactPhone: string;
 }
 
-export interface UpdateProfileRequest {
+export interface ProfileObject {
   name: string;
   profile: ProfileInterface;
 }
@@ -35,7 +35,7 @@ const getProfile = async (req: Request, res: Response) => {
         contactPhone: '',
         email: '',
       },
-    });
+    } as ProfileObject);
   }
 
   return res.send({
@@ -49,12 +49,12 @@ const getProfile = async (req: Request, res: Response) => {
       contactPhone: profile.phone,
       email: profile.email,
     },
-  });
+  } as ProfileObject);
 };
 
 const updateProfile = async (req: Request, res: Response) => {
   const walletAddress = req.session.siwe.address;
-  const data = req.body as UpdateProfileRequest;
+  const data = req.body as ProfileObject;
 
   let profile = await profileService.findProfileByWalletAddress(walletAddress);
 
@@ -65,7 +65,18 @@ const updateProfile = async (req: Request, res: Response) => {
 
   profile = await profileService.updateProfile(profile, data);
 
-  return res.send(profile);
+  res.send({
+    name: profile.username,
+    profile: {
+      location: {
+        address: profile.address,
+        postalCode: profile.postal_code,
+        city: profile.city,
+      },
+      contactPhone: profile.phone,
+      email: profile.email,
+    },
+  } as ProfileObject);
 };
 
 export { getProfile, updateProfile };

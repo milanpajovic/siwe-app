@@ -43,13 +43,7 @@ This project uses the Pnpm package manager for several reasons:
 
 ## Docker Services
 
-These services work together to create a development environment for our web application. The `api` service hosts our application's backend, the `db` service provides the database, the `cache` service handles caching, and the `jaeger` service facilitates tracing and monitoring.
-
-### api
-
-- The API service hosts web application's backend.
-- It can be used for development purpose to match environment on server
-- Container of this server is built and published to AWS ECR for production deployment
+These services work together to create a development environment for our web application. The `db` service provides the database, the `cache` service handles caching, and the `jaeger` service facilitates tracing and monitoring.
 
 ### db
 
@@ -78,10 +72,8 @@ To get started with the SIWE web application, follow these steps:
 4. Update the environment variables in these `.env` files to match your specific configuration.
 5. Install pnpm if not installed `npm install -g pnpm`
 6. Install dependencies using Pnpm: `pnpm install`
-7. If you want your local server outside docker comment api service in docker-compose file
-8. Run the following command to start all defined services (server, database, cache, and Jaeger) simultaneously: `docker-compose up` (docker build will be automatically executed)
-9. Start the application using Nx commands: `nx serve server` (for server) and `nx serve frontend` (for frontend).
-10. Access the application in your browser at the provided URL.
+7. Run the following command to start all defined services (database, cache, and Jaeger) simultaneously: `docker-compose up` (docker build will be automatically executed)
+8. Start the application using Nx commands: `nx serve server` (for server) and `nx serve frontend` (for frontend). 9Access the application in your browser at the provided URL.
 
 ## NX Commands
 
